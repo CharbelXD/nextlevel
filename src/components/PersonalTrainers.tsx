@@ -87,17 +87,17 @@ export default function PersonalTrainers() {
           {trainers.map((trainer, index) => (
             <div
               key={trainer.id}
-              className="group relative bg-neutral-900 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-400/20 cursor-pointer"
+              className="group relative bg-neutral-900 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-400/20 cursor-pointer h-full flex flex-col"
               onClick={() => handleSelectTrainer(trainer.id, trainer.name)}
               style={{
                 animation: `fadeInUp 0.6s ease-out ${index * 0.1}s backwards`,
               }}
             >
-              <div className="relative h-48 md:h-64 overflow-hidden">
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-800">
                 <img
                   src={trainer.image_url}
                   alt={trainer.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/30 to-transparent" />
                 {selectedTrainerId === trainer.id && (
@@ -109,7 +109,7 @@ export default function PersonalTrainers() {
                 )}
               </div>
 
-              <div className="p-4 md:p-6">
+              <div className="p-4 md:p-6 flex-1">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-1 md:mb-2 group-hover:text-yellow-400 transition-colors duration-300">
                   {trainer.name}
                 </h3>
