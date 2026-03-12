@@ -9,6 +9,8 @@ export default function PersonalTrainers() {
   const [selectedTrainerId, setSelectedTrainerId] = useState<string | null>(null);
   const [selectedTrainerName, setSelectedTrainerName] = useState<string>('');
 
+  const whatsappNumber = '96181236519';
+
   useEffect(() => {
     async function fetchTrainers() {
       const { data, error } = await supabase
@@ -29,14 +31,11 @@ export default function PersonalTrainers() {
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'personal_trainers' },
-        (payload) => {
-          console.log('Trainers change received:', payload);
+        () => {
           fetchTrainers();
         }
       )
-      .subscribe((status) => {
-        console.log('Trainers subscription status:', status);
-      });
+      .subscribe();
 
     return () => {
       subscription.unsubscribe();
@@ -46,6 +45,15 @@ export default function PersonalTrainers() {
   const handleSelectTrainer = (trainerId: string, trainerName: string) => {
     setSelectedTrainerId(trainerId);
     setSelectedTrainerName(trainerName);
+  };
+
+  const handleConfirmSelection = () => {
+    if (!selectedTrainerName) return;
+
+    const message = `Hello, I want to train with ${selectedTrainerName}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, '_blank');
   };
 
   if (loading) {
@@ -82,7 +90,7 @@ export default function PersonalTrainers() {
               className="group relative bg-neutral-900 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-400/20 cursor-pointer"
               onClick={() => handleSelectTrainer(trainer.id, trainer.name)}
               style={{
-                animation: `fadeInUp 0.6s ease-out ${index * 0.1}s backwards`
+                animation: `fadeInUp 0.6s ease-out ${index * 0.1}s backwards`,
               }}
             >
               <div className="relative h-48 md:h-64 overflow-hidden">
@@ -136,9 +144,14 @@ export default function PersonalTrainers() {
         {selectedTrainerId && (
           <div className="mt-10 md:mt-16 text-center">
             <p className="text-gray-300 text-sm md:text-lg mb-4">
-              You have selected <span className="text-yellow-400 font-bold">{selectedTrainerName}</span> as your personal trainer
+              You have selected{' '}
+              <span className="text-yellow-400 font-bold">{selectedTrainerName}</span> as your
+              personal trainer
             </p>
-            <button className="bg-yellow-400 text-black px-6 md:px-8 py-2 md:py-3 font-bold hover:bg-yellow-500 transition-all duration-300 text-sm md:text-base">
+            <button
+              onClick={handleConfirmSelection}
+              className="bg-yellow-400 text-black px-6 md:px-8 py-2 md:py-3 font-bold hover:bg-yellow-500 transition-all duration-300 text-sm md:text-base"
+            >
               CONFIRM SELECTION
             </button>
           </div>
