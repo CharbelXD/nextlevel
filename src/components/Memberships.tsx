@@ -15,6 +15,14 @@ export default function Memberships() {
   const [memberships, setMemberships] = useState<Membership[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const whatsappNumber = "96181236519"; // replace with your number
+
+  const handleMembershipWhatsApp = (planName: string) => {
+    const message = `Hello, I want a membership for the ${planName} plan`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
   useEffect(() => {
     const fetchMemberships = async () => {
       const { data, error } = await supabase
@@ -36,14 +44,22 @@ export default function Memberships() {
     <section id="memberships" className="py-20 bg-neutral-950">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
-          <p className="text-yellow-400 font-bold tracking-widest uppercase mb-3">Memberships</p>
-          <h2 className="text-4xl md:text-5xl font-black text-white">Choose Your Plan</h2>
+          <p className="text-yellow-400 font-bold tracking-widest uppercase mb-3">
+            Memberships
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black text-white">
+            Choose Your Plan
+          </h2>
         </div>
 
         {loading ? (
-          <div className="text-center text-gray-400">Loading memberships...</div>
+          <div className="text-center text-gray-400">
+            Loading memberships...
+          </div>
         ) : memberships.length === 0 ? (
-          <div className="text-center text-gray-400">No membership plans available yet.</div>
+          <div className="text-center text-gray-400">
+            No membership plans available yet.
+          </div>
         ) : (
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             {memberships.map((plan) => (
@@ -59,9 +75,17 @@ export default function Memberships() {
                   </div>
                 )}
 
-                <h3 className="text-2xl font-black text-white mb-3">{plan.name}</h3>
-                <div className="text-yellow-400 text-4xl font-black mb-1">{plan.price}</div>
-                <div className="text-gray-400 mb-8">{plan.duration}</div>
+                <h3 className="text-2xl font-black text-white mb-3">
+                  {plan.name}
+                </h3>
+
+                <div className="text-yellow-400 text-4xl font-black mb-1">
+                  {plan.price}
+                </div>
+
+                <div className="text-gray-400 mb-8">
+                  {plan.duration}
+                </div>
 
                 <div className="space-y-3 mb-8">
                   {(plan.features || []).map((feature, index) => (
@@ -72,7 +96,10 @@ export default function Memberships() {
                   ))}
                 </div>
 
-                <button className="w-full bg-yellow-400 text-black font-black py-3 hover:bg-yellow-500 transition-colors">
+                <button
+                  onClick={() => handleMembershipWhatsApp(plan.name)}
+                  className="w-full bg-yellow-400 text-black font-black py-3 hover:bg-yellow-500 transition-colors"
+                >
                   Get Started
                 </button>
               </div>

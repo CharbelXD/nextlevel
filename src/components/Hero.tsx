@@ -62,9 +62,7 @@ export default function Hero() {
             >
               News
             </button>
-            <button className="bg-yellow-400 text-black px-6 py-2 font-bold hover:bg-yellow-500 transition-all duration-300 hover:scale-105">
-              JOIN NOW
-            </button>
+            
           </div>
 
           <button
@@ -102,9 +100,7 @@ export default function Hero() {
               >
                 News
               </button>
-              <button className="bg-yellow-400 text-black px-4 md:px-6 py-2 font-bold hover:bg-yellow-500 transition-all duration-300 text-sm md:text-base">
-                JOIN NOW
-              </button>
+              
             </div>
           </div>
         )}
