@@ -12,14 +12,18 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url(https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg)',
-          opacity: 0.4
-        }}
-      />
+    <div className="relative min-h-screen bg-black overflow-hidden">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/videos/background.mp4" type="video/mp4" />
+      </video>
+
+      <div className="absolute inset-0 bg-black/60" />
 
       <nav className="relative z-20 px-4 md:px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -72,7 +76,7 @@ export default function Hero() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-95 backdrop-blur-lg">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg z-30">
             <div className="flex flex-col gap-4 p-6">
               <button
                 onClick={() => scrollToSection('memberships')}
