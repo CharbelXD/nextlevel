@@ -122,12 +122,10 @@ export default function Schedule() {
                           <Clock className="h-3 w-3 text-yellow-400 flex-shrink-0" />
                           <span className="truncate">{formatTime(item.start_time)} - {formatTime(item.end_time)}</span>
                         </div>
-                        <div className="text-gray-500 text-xs mb-1 md:mb-2 truncate">
-                          {item.instructor}
-                        </div>
+                        
                         <div className="flex items-center gap-1 text-gray-400 text-xs">
                           <Users className="h-3 w-3 text-yellow-400 flex-shrink-0" />
-                          <span>{item.capacity} spots</span>
+                          <span>{item.instructor}</span>
                         </div>
                       </div>
                     );

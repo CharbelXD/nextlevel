@@ -114,7 +114,7 @@ export default function Hero() {
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-8 leading-relaxed">
             Transform your body, elevate your mind, and join a community of champions.
-            State-of-the-art facilities, expert trainers, and unlimited potential.
+            State of the art facilities, expert trainers, and unlimited potential.
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4">
             <button
@@ -138,11 +138,11 @@ export default function Hero() {
             <div className="text-gray-400 text-xs md:text-base">Members</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl md:text-4xl font-bold text-yellow-400 mb-1 md:mb-2">20+</div>
+            <div className="text-2xl md:text-4xl font-bold text-yellow-400 mb-1 md:mb-2">10</div>
             <div className="text-gray-400 text-xs md:text-base">Classes</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl md:text-4xl font-bold text-yellow-400 mb-1 md:mb-2">15</div>
+            <div className="text-2xl md:text-4xl font-bold text-yellow-400 mb-1 md:mb-2">5</div>
             <div className="text-gray-400 text-xs md:text-base">Trainers</div>
           </div>
         </div>

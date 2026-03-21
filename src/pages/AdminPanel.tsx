@@ -800,7 +800,7 @@ export default function AdminPanel() {
                   </div>
 
                   <div>
-                    <label className="block text-white font-bold mb-2 flex items-center gap-2">
+                    <label className="block text-white font-bold mb-2 items-center gap-2">
                       <Image className="h-5 w-5" />
                       Featured Image
                     </label>

@@ -7,6 +7,14 @@ export default function Classes() {
   const [classes, setClasses] = useState<Class[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const whatsappNumber = "96181236519"; // change if needed
+
+  const handleBookClass = (className: string) => {
+    const message = `Hello, I want to book the ${className} class`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
   useEffect(() => {
     async function fetchClasses() {
       const { data, error } = await supabase
@@ -27,14 +35,11 @@ export default function Classes() {
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'classes' },
-        (payload) => {
-          console.log('Classes change received:', payload);
+        () => {
           fetchClasses();
         }
       )
-      .subscribe((status) => {
-        console.log('Classes subscription status:', status);
-      });
+      .subscribe();
 
     return () => {
       subscription.unsubscribe();
@@ -90,7 +95,7 @@ export default function Classes() {
                 <img
                   src={classItem.image_url}
                   alt={classItem.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/50 to-transparent" />
                 <div className="absolute top-3 right-3 md:top-4 md:right-4">
@@ -127,7 +132,10 @@ export default function Classes() {
                   </div>
                 </div>
 
-                <button className="mt-4 md:mt-6 w-full bg-yellow-400 text-black py-2 font-bold hover:bg-yellow-500 transition-all duration-300 group-hover:scale-105 text-sm md:text-base">
+                <button
+                  onClick={() => handleBookClass(classItem.name)}
+                  className="mt-4 md:mt-6 w-full bg-yellow-400 text-black py-2 font-bold hover:bg-yellow-500 transition-all duration-300 group-hover:scale-105 text-sm md:text-base"
+                >
                   BOOK CLASS
                 </button>
               </div>
