@@ -7,7 +7,7 @@ export default function Classes() {
   const [classes, setClasses] = useState<Class[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const whatsappNumber = "96181236519"; // change if needed
+  const whatsappNumber = "96103585572"; // change if needed
 
   const handleBookClass = (className: string) => {
     const message = `Hello, I want to book the ${className} class`;

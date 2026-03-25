@@ -9,7 +9,7 @@ export default function PersonalTrainers() {
   const [selectedTrainerId, setSelectedTrainerId] = useState<string | null>(null);
   const [selectedTrainerName, setSelectedTrainerName] = useState<string>('');
 
-  const whatsappNumber = '96181236519';
+  const whatsappNumber = '96103585572'; 
 
   useEffect(() => {
     async function fetchTrainers() {

@@ -15,7 +15,7 @@ export default function Memberships() {
   const [memberships, setMemberships] = useState<Membership[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const whatsappNumber = "96181236519"; // replace with your number
+  const whatsappNumber = "96103585572"; // replace with your number
 
   const handleMembershipWhatsApp = (planName: string) => {
     const message = `Hello, I want a membership for the ${planName} plan`;
